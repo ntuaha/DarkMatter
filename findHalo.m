@@ -9,6 +9,8 @@ function [C M e x y norm] = findHalo(i,beta0,show)
 
          
      if show
+        bubbleplot(x,y,e1.^2+e2.^2,'blue',25);    
+        hold on; 
         opt=optimset('MaxIter',1000,'MaxFunEvals',3000,'Display','iter');
      else
         opt=optimset('MaxIter',1000,'MaxFunEvals',3000);
