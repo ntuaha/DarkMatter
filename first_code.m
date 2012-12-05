@@ -74,11 +74,11 @@ parfor i =1:100
                 temp_x = XX;
                 temp_y = YY;
             end
-            temp = getDistance(temp_x,temp_y,halo_x1(i),halo_y1(i));
+            temp = getDistance(XX,YY,halo_x1(i),halo_y1(i));
             if temp<temp_dd(i)
                 temp_dd(i) = temp;
-                temp_dd_x(i) = temp_x;
-                temp_dd_y(i) = temp_y;
+                temp_dd_x(i) = XX;
+                temp_dd_y(i) = YY;
                 temp_dd_norm(i) = norm;
             end
         end
