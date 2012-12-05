@@ -127,7 +127,12 @@ for i=1:100
 end
 fclose(fp);
 
-
+fp = fopen('/Users/aha/Dropbox/Learning/2012_Kaggle/DarkSky/Matlab/data/3.csv','w+');
+fprintf(fp,'SkyId,pred_x1,pred_y1,pred_x2,pred_y2,pred_x3, pred_y3\n');
+for i=1:100
+    fprintf(fp,'Sky%d,%f,%f,0.0,0.0,0.0,0.0\n',i,temp_dd_x(i),temp_dd_y(i));
+end
+fclose(fp);
 
 score = sum(dd)/100/1000;
 score = sum(temp_dd)/100/1000;
