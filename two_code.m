@@ -24,66 +24,67 @@ result_y_2(I) = 0.0;
 dd(I) = 0.0;
 dd_start(I) = 0.0;
 
-  if matlabpool('size') <4 % checking to see if my pool is already open
-      matlabpool open 4
-  end
+if matlabpool('size') <4 % checking to see if my pool is already open
+    matlabpool open 4
+end
 
-resolution = 150;
+step = 500;
 show = true;
 parfor i =101:200
     i
     temp_x = 4500;
     temp_y = 4500;
-    x_start = floor(halo_x1(i)/resolution)*resolution+500*rand();
-    y_start = floor(halo_y1(i)/resolution)*resolution+500*rand();
-    x_start_2 = floor(halo_x2(i)/resolution)*resolution+500*rand();
-    y_start_2 = floor(halo_y2(i)/resolution)*resolution+500*rand();
-    x_start_3 = floor(halo_x3(i)/resolution)*resolution+500*rand();
-    y_start_3 = floor(halo_y3(i)/resolution)*resolution+500*rand();
+    %x_start = floor(halo_x1(i)/resolution)*resolution+500*rand();
+    %y_start = floor(halo_y1(i)/resolution)*resolution+500*rand();
+    %x_start_2 = floor(halo_x2(i)/resolution)*resolution+500*rand();
+    %y_start_2 = floor(halo_y2(i)/resolution)*resolution+500*rand();
+    %x_start_3 = floor(halo_x3(i)/resolution)*resolution+500*rand();
+    %y_start_3 = floor(halo_y3(i)/resolution)*resolution+500*rand();
     %x_start = ghalo_x1(i);
     %y_start = ghalo_y1(i);
     time = 0;
-    %for j = 0:500:4200
-    %    for k = 0:500:4200
-        time = time+1
-             c = 1000;
-             M = 1;
-             e = 0;
-             %x_start = ghalo_x1(i);
-             %y_start = ghalo_y1(i);
-             %x_start_2 = ghalo_x2(i);
-             %y_start_2 = ghalo_x2(i);
-             %x_start = 2100;
-             %y_start = 2100;
-
-        
-            [tempC tempM tempE XX YY XX2 YY2 norm] = findHalo2(i,[c,M,e,x_start,y_start,x_start_2,y_start_2],show);
-            if(norm<temp_norm(i))
-                temp_norm(i) = norm;
-                temp_x = [XX XX2];
-                temp_y = [YY YY2];
+    file = ['/Users/aha/Dropbox/Learning/2012_Kaggle/DarkSky/data/Train_Skies/Training_Sky' num2str(i) '.csv' ];
+    [id,x,y,e1,e2]=textread(file,'%s%n%n%n%n','delimiter', ',','headerlines',1);
+    for j = 0:step:4200
+        for k = 0:step:4200
+            for u = j:step:4200
+                for w = k:step:4200
+                    i
+                    j
+                    k
+                    u
+                    w
+                    c = 1000;
+                    M = 1;
+                    %c2 = 1000;
+                    %M2 = 1;
+                    e = 0;
+                    x_start = j
+                    y_start = k
+                    x_start_2 = u
+                    y_start_2 = w
+                    
+                    [tempC tempM tempE XX YY XX2 YY2 norm] = findHalo2(i,[c,M,e,x_start,y_start,x_start_2,y_start_2],false,x,y,e1,e2);
+                    if(norm<temp_norm(i))
+                        temp_norm(i) = norm;
+                        temp_x = [XX XX2];
+                        temp_y = [YY YY2];
+                    end
+                end
             end
-            temp = getTotalDistance([XX XX2],[YY YY2] ,[halo_x1(i) halo_x2(i)],[halo_y1(i) halo_y2(i)]);
-            if temp<temp_dd(i)
-                temp_dd(i) = temp;
-                temp_dd_x(i) = XX;
-                temp_dd_y(i) = YY;
-                temp_dd_x_2(i) = XX2;
-                temp_dd_y_2(i) = YY2;
-                temp_dd_norm(i) = norm;
-            end
-     %   end
-     %end
-
-        result_x(i) = temp_x(1);
-        result_y(i) = temp_y(1);
-        result_x_2(i) = temp_x(2);
-        result_y_2(i) = temp_y(2);
-        dd(i) = getTotalDistance([result_x(i) result_x_2(i)],[result_y(i) result_y_2(i)],[halo_x1(i) halo_x2(i)],[halo_y1(i) halo_y2(i)]);
-        %dd_start(i) = getDistance(x_start,y_start,halo_x1(i),halo_y1(i));
-       
-    if show 
+        end
+    end
+    
+    result_x(i) = temp_x(1);
+    result_y(i) = temp_y(1);
+    result_x_2(i) = temp_x(2);
+    result_y_2(i) = temp_y(2);
+    dd(i) = getTotalDistance([result_x(i) result_x_2(i)],[result_y(i) result_y_2(i)],[halo_x1(i) halo_x2(i)],[halo_y1(i) halo_y2(i)]);
+    
+    if show
         plot(halo_x1(i),halo_y1(i),'rs', 'MarkerEdgeColor','k','MarkerFaceColor','r','MarkerSize',10);
+        hold on;
+        axis([0 4200 0 4200]);
         text(halo_x1(i),halo_y1(i),'r1');
         plot(halo_x2(i),halo_y2(i),'rs', 'MarkerEdgeColor','k','MarkerFaceColor','r','MarkerSize',10);
         text(halo_x2(i),halo_y2(i),'r2');
@@ -96,23 +97,23 @@ parfor i =101:200
         plot(ghalo_x2(i),ghalo_y2(i),'rs', 'MarkerEdgeColor','k','MarkerFaceColor','y','MarkerSize',10);
         h = text(ghalo_x2(i),ghalo_y2(i),'g2');
         %plot(sum(x)/length(x),sum(y)/length(y),'rs', 'MarkerEdgeColor','k','MarkerFaceColor','k','MarkerSize',10);)
-        saveas(h, ['/Users/aha/Dropbox/Learning/2012_Kaggle/DarkSky/Matlab/figure/' num2str(i) '.png'],'png');                          
+        saveas(h, ['/Users/aha/Dropbox/Learning/2012_Kaggle/DarkSky/Matlab/figure/twohalo/' num2str(i) '.png'],'png');
         close;
         
     end
     
-
     
     
     
     
-
+    
+    
 end
- matlabpool close;
+matlabpool close;
 
 
 
-fp = fopen('/Users/aha/Dropbox/Learning/2012_Kaggle/DarkSky/Matlab/data/1.csv','w+');
+fp = fopen('/Users/aha/Dropbox/Learning/2012_Kaggle/DarkSky/Matlab/data/twohalo/1.csv','w+');
 fprintf(fp,'SkyId,pred_x1,pred_y1,pred_x2,pred_y2,pred_x3, pred_y3\n');
 for i=I
     fprintf(fp,'Sky%d,%f,%f,%f,%f,0.0,0.0\n',i,result_x(i),result_y(i),result_x_2(i),result_y_2(i));
@@ -120,14 +121,14 @@ end
 fclose(fp);
 
 
-fp = fopen('/Users/aha/Dropbox/Learning/2012_Kaggle/DarkSky/Matlab/data/2.csv','w+');
+fp = fopen('/Users/aha/Dropbox/Learning/2012_Kaggle/DarkSky/Matlab/data/twohalo/2.csv','w+');
 fprintf(fp,'SkyId,pred_x1,pred_y1,pred_d,pred_norm,best_x1,best_y1,best_norm,best_norm\n');
 for i=I
     fprintf(fp,'Sky%d,%f,%f,%f,%f,%f,%f,%f,%f\n',i,result_x(i),result_y(i),dd(i),temp_norm(i),temp_dd_x(i),temp_dd_y(i),temp_dd_norm(i),temp_dd(i));
 end
 fclose(fp);
 
-fp = fopen('/Users/aha/Dropbox/Learning/2012_Kaggle/DarkSky/Matlab/data/3.csv','w+');
+fp = fopen('/Users/aha/Dropbox/Learning/2012_Kaggle/DarkSky/Matlab/data/twohalo/3.csv','w+');
 fprintf(fp,'SkyId,pred_x1,pred_y1,pred_x2,pred_y2,pred_x3, pred_y3\n');
 for i=I
     fprintf(fp,'Sky%d,%f,%f,%f,%f,0.0,0.0\n',i,temp_dd_x(i),temp_dd_y(i),temp_dd_x_2(i),temp_dd_y_2(i));
