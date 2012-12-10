@@ -28,11 +28,11 @@ step = 500;
 mytime = clock();
 datafile = ['' num2str(mytime(2)) '-' num2str(mytime(3)) '-' num2str(mytime(4)) '-' num2str(mytime(5)) '-' num2str(floor(mytime(6)))];
 
-s = mkdir(['/Users/aha/Dropbox/Learning/2012_Kaggle/DarkSky/Matlab/new_version/figure/' datafile '/']);
+s = mkdir(['/Users/aha/Dropbox/Learning/2012_Kaggle/DarkSky/Matlab/new_version_special/figure/' datafile '/']);
 if(s(1)~=1)
     exit();
 end
-s = mkdir(['/Users/aha/Dropbox/Learning/2012_Kaggle/DarkSky/Matlab/new_version/data/' datafile '/']);
+s = mkdir(['/Users/aha/Dropbox/Learning/2012_Kaggle/DarkSky/Matlab/new_version_special/data/' datafile '/']);
 if(s(1)~=1)
     exit();
 end
@@ -114,7 +114,7 @@ parfor i =real_run
         end
         
         
-        saveas(h, ['/Users/aha/Dropbox/Learning/2012_Kaggle/DarkSky/Matlab/new_version/figure/' datafile '/' num2str(i) '.png'],'png');
+        saveas(h, ['/Users/aha/Dropbox/Learning/2012_Kaggle/DarkSky/Matlab/new_version_special/figure/' datafile '/' num2str(i) '.png'],'png');
         close;
     end
     
@@ -129,14 +129,14 @@ matlabpool close;
 
 
 
-fp = fopen(['/Users/aha/Dropbox/Learning/2012_Kaggle/DarkSky/Matlab/new_version/data/' datafile '/1.csv'],'w+');
+fp = fopen(['/Users/aha/Dropbox/Learning/2012_Kaggle/DarkSky/Matlab/new_version_special/data/' datafile '/1.csv'],'w+');
 fprintf(fp,'SkyId,pred_x1,pred_y1,pred_x2,pred_y2,pred_x3, pred_y3\n');
 for i=I
     fprintf(fp,'Sky%d,%f,%f,%f,%f,%f,%f\n',i,result_x(i),result_y(i),result_x_2(i),result_y_2(i),result_x_3(i),result_y_3(i));
 end
 fclose(fp);
 
-fp = fopen(['/Users/aha/Dropbox/Learning/2012_Kaggle/DarkSky/Matlab/new_version/data/' datafile '/random.csv'],'w+');
+fp = fopen(['/Users/aha/Dropbox/Learning/2012_Kaggle/DarkSky/Matlab/new_version_special/data/' datafile '/random.csv'],'w+');
 fprintf(fp,'SkyId,pred_x1,pred_y1,pred_x2,pred_y2,pred_x3, pred_y3\n');
 for i=I
     fprintf(fp,'Sky%d,%f,%f,%f,%f,%f,%f\n',i,rx_start(1,i),ry_start(1,i),rx_start(2,i),ry_start(2,i),rx_start(3,i),ry_start(3,i));
