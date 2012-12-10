@@ -11,8 +11,8 @@ galaxy(:,2) = yy;
 
 opt=optimset('MaxIter',1000,'MaxFunEvals',3000);
 
-lower_beta = [1.0,0,1.0,0,-1,0,0,0,0,1];
-upper_beta = [1e6,1e7,1e6,1e7,1,4200,4200,4200,4200,1e10];
+lower_beta = [1.0,0,1.0,0,-1,0,0,0,0,1,-1,-1,-1];
+upper_beta = [1e6,1e7,1e6,1e7,1,4200,4200,4200,4200,1e10,1,1,1];
 
 
 [beta,norm] = lsqcurvefit(@darkmatter2,beta0,galaxy,ee,lower_beta,upper_beta,opt);
