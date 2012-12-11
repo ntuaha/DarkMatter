@@ -24,7 +24,7 @@ if matlabpool('size') <4 % checking to see if my pool is already open
     matlabpool open 4
 end
 
-step = 500;
+step = 100;
 mytime = clock();
 datafile = ['' num2str(mytime(2)) '-' num2str(mytime(3)) '-' num2str(mytime(4)) '-' num2str(mytime(5)) '-' num2str(floor(mytime(6)))];
 
@@ -38,7 +38,7 @@ if(s(1)~=1)
 end
 
 %Make random start
-rrange = 1000;
+rrange = 0;
 rx_start(1:3,I) = 0;
 ry_start(1:3,I) = 0;
 for i=1:300
@@ -57,8 +57,8 @@ for i=1:300
 end
 
 
-real_run = 200:202;
-for i =real_run
+real_run = 1:300;
+parfor i =real_run
     
     
     

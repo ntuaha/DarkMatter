@@ -58,7 +58,7 @@ function y_result = darkmatter3(beta,location)
     r12 = sqrt((x-X12).^2 + (y-Y12).^2);
     r23 = sqrt((x-X23).^2 + (y-Y23).^2);
     r13 = sqrt((x-X13).^2 + (y-Y13).^2);
-    r123 = sqrt((x-X123).^2 + (y-Y123));
+    r123 = sqrt((x-X123).^2 + (y-Y123).^2);
     
     phi = atan((y-Y1)./(x-X1));    
     phi2 = atan((y-Y2)./(x-X2));

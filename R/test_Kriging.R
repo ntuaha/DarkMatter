@@ -9,7 +9,7 @@ ptm <- proc.time()
 for (i in 101:101)
 {
 
-  i <- 7
+  i <- 1
   
   data_path <- paste('/Users/aha/Dropbox/Learning/2012_Kaggle/DarkSky/data/Train_Skies/Training_Sky',i,sep="")
   data_path <- paste(data_path,'.csv',sep="")
@@ -17,6 +17,8 @@ for (i in 101:101)
   coordinates(d) <- ~x+y
   e <- sqrt(d$e1**2 +d$e2**2)
   d$z <- (1-e)/(1+e)
+  
+  
   
   #bubble(d,zcol='z',fill=TRUE,do.sqrt=FALSE)
   x=seq(from=0,to=4200,by=50)
@@ -26,8 +28,8 @@ for (i in 101:101)
   gridded(gg) <-TRUE
   
   
-  g <- gstat(id="z",formula=z~1,data=d)
-  v <- variogram(g)
+#  g <- gstat(id="z",formula=z~1,data=d)
+#  v <- variogram(g)
   # Fit Linear model  anis??
   #v.fit <- fit.variogram(v,model=vgm(model='Nug'))
   
@@ -37,6 +39,7 @@ for (i in 101:101)
   #plot(v,model=v.fit,as.table=TRUE)
   #g2 <- gstat(g,id="z",model=v.fit)
   auto_Kriging = autoKrige(z~1, d, gg,model = c("Sph", "Exp", "Gau","Ste"))
+  #vgm()
   plot(auto_Kriging)
   p <- auto_Kriging$krige_output
   

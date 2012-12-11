@@ -5,6 +5,13 @@ ansfile = '/Users/aha/Dropbox/Learning/2012_Kaggle/DarkSky/data/Training_halos.c
 [SkyId,numHalos,x_ref,y_ref,halo_x1,halo_y1,halo_x2,halo_y2,halo_x3,halo_y3]=textread(ansfile,'%s%d%n%n%n%n%n%n%n%n','delimiter', ',','headerlines',1);
 [gSkyId,ghalo_x1,ghalo_y1,ghalo_x2,ghalo_y2,ghalo_x3,ghalo_y3]=textread(guessfile,'%s%n%n%n%n%n%n','delimiter', ',','headerlines',1);
 
+wushfile = '/Users/aha/Desktop/rstudio-export/non-param.train.7.csv';
+[wSkyId,whalo_x1,whalo_y1,whalo_x2,whalo_y2,whalo_x3,whalo_y3]=textread(wushfile,'%s%n%n%n%n%n%n','delimiter', ',','headerlines',1);
+
+
+
+
+
 I = 1:300;
 temp_norm(I) = 1e4;
 result_x(I) = 0.0;
@@ -26,7 +33,7 @@ end
 
 step = 500;
 mytime = clock();
-datafile = ['' num2str(mytime(2)) '-' num2str(mytime(3)) '-' num2str(mytime(4)) '-' num2str(mytime(5)) '-' num2str(floor(mytime(6)))];
+datafile = ['wush_nonp_7' num2str(mytime(2)) '-' num2str(mytime(3)) '-' num2str(mytime(4)) '-' num2str(mytime(5)) '-' num2str(floor(mytime(6)))];
 
 s = mkdir(['/Users/aha/Dropbox/Learning/2012_Kaggle/DarkSky/Matlab/new_version_special/figure/' datafile '/']);
 if(s(1)~=1)
@@ -38,20 +45,20 @@ if(s(1)~=1)
 end
 
 %Make random start
-rrange = 1000;
+rrange = 0;
 rx_start(1:3,I) = 0;
 ry_start(1:3,I) = 0;
 for i=1:300
-    rx_start(1,i) = halo_x1(i)+rrange*rand();
-    ry_start(1,i) = halo_y1(i)+rrange*rand();
+    rx_start(1,i) = whalo_x1(i);
+    ry_start(1,i) = whalo_y1(i);
     if (numHalos(i)>1)
-        rx_start(2,i) = halo_x2(i)+rrange*rand();
-        ry_start(2,i) = halo_y2(i)+rrange*rand();
+        rx_start(2,i) = whalo_x2(i);
+        ry_start(2,i) = whalo_y2(i);
         
     end
     if (numHalos(i)>2)
-        rx_start(3,i) = halo_x3(i)+rrange*rand();
-        ry_start(3,i) = halo_y3(i)+rrange*rand();
+        rx_start(3,i) = whalo_x3(i);
+        ry_start(3,i) = whalo_y3(i);
         
     end
 end

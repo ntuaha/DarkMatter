@@ -7,12 +7,14 @@ galaxy(:,1) = xx;
 galaxy(:,2) = yy;
 
 
+c1 = -1;
+c2 = 2;
 
 
-opt=optimset('MaxIter',1000,'MaxFunEvals',3000);
+opt=optimset('MaxIter',1000,'MaxFunEvals',length(xx)*2);
 
-lower_beta = [1.0,0,1.0,0,-1,0,0,0,0,1,-1,-1,-1];
-upper_beta = [1e6,1e7,1e6,1e7,1,4200,4200,4200,4200,1e10,1,1,1];
+lower_beta = [1.0,0,1.0,0,-1,0,0,0,0,1,c1,c1,c1];
+upper_beta = [1e6,1e7,1e6,1e7,1,4200,4200,4200,4200,1e10,c2,c2,c2];
 
 
 [beta,norm] = lsqcurvefit(@darkmatter2,beta0,galaxy,ee,lower_beta,upper_beta,opt);
