@@ -3,8 +3,27 @@ function  [C1 M1 E X1 Y1 norm]=subfunction1(step,index, x,y,e1,e2,x_start,y_star
 c = 1000;
 M = 1;
 e = 0;
-beta0 = [c,M,e,x_start(1),y_start(1)];
-[C1 M1 E X1 Y1 norm] = findHalo1(index,beta0,x,y,e1,e2);
+temp_X1 = 0;
+temp_Y1 = 0;
+temp_norm = 1e4;
+for XX1= 0:step:4200
+    for YY1 = 0:step:4200
+        beta0 = [c,M,e,XX1,YY1];
+        [C1 M1 E X1 Y1 norm] = findHalo1(index,beta0,x,y,e1,e2);
+        if norm<temp_norm
+            temp_norm = norm;
+            temp_X1 = X1;
+            temp_Y1 = Y1;
+        end
+        
+        
+    end
+end
+
+X1 = temp_X1;
+Y1 = temp_Y1;
+norm = temp_norm;
+    
 
 %length(e2)
 

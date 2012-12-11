@@ -10,7 +10,7 @@ galaxy(:,2) = yy;
 
 
 
-opt=optimset('MaxIter',1000,'MaxFunEvals',length(xx)*2);
+opt=optimset('MaxIter',3000,'MaxFunEvals',length(xx),'TolFun',1e-10);
 
 c1 = -1;
 c2 = 2;

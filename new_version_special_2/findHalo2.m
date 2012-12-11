@@ -7,17 +7,21 @@ galaxy(:,1) = xx;
 galaxy(:,2) = yy;
 
 
-c1 = -1;
-c2 = 2;
+c1 = -1e4;
+c2 = 1e4;
+
+e2_upper = 1;
+e2_lower = -1;
 
 
-opt=optimset('MaxIter',1000,'MaxFunEvals',length(xx)*2);
+opt=optimset('MaxIter',1000,'MaxFunEvals',length(xx),'TolFun',1e-10);
 
-lower_beta = [1.0,0,1.0,0,-1,0,0,0,0,1,c1,c1,c1];
-upper_beta = [1e6,1e7,1e6,1e7,1,4200,4200,4200,4200,1e10,c2,c2,c2];
+lower_beta = [1.0,0,1.0,0,-1,0,0,0,0,1,c1,c1,c1,e2_lower];
+upper_beta = [1e6,1e7,1e6,1e7,1,4200,4200,4200,4200,1e10,c2,c2,c2,e2_upper];
 
 
 [beta,norm] = lsqcurvefit(@darkmatter2,beta0,galaxy,ee,lower_beta,upper_beta,opt);
+
 C1 = beta(1);
 M1 = beta(2);
 C2 = beta(3);

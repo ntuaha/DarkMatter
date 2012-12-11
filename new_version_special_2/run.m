@@ -5,6 +5,10 @@ ansfile = '/Users/aha/Dropbox/Learning/2012_Kaggle/DarkSky/data/Training_halos.c
 [SkyId,numHalos,x_ref,y_ref,halo_x1,halo_y1,halo_x2,halo_y2,halo_x3,halo_y3]=textread(ansfile,'%s%d%n%n%n%n%n%n%n%n','delimiter', ',','headerlines',1);
 [gSkyId,ghalo_x1,ghalo_y1,ghalo_x2,ghalo_y2,ghalo_x3,ghalo_y3]=textread(guessfile,'%s%n%n%n%n%n%n','delimiter', ',','headerlines',1);
 
+
+basefile = 'Users/aha/Dropbox/Learning/2012_Kaggle/DarkSky/Matlab/data/twohalo_3/1.csv';
+[bSkyId,bhalo_x1,bhalo_y1,bhalo_x2,bhalo_y2,bhalo_x3,bhalo_y3]=textread(guessfile,'%s%n%n%n%n%n%n','delimiter', ',','headerlines',1);
+
 I = 1:300;
 temp_norm(I) = 1e4;
 result_x(I) = 0.0;
@@ -24,7 +28,7 @@ if matlabpool('size') <4 % checking to see if my pool is already open
     matlabpool open 4
 end
 
-step = 100;
+step = 500;
 mytime = clock();
 datafile = ['' num2str(mytime(2)) '-' num2str(mytime(3)) '-' num2str(mytime(4)) '-' num2str(mytime(5)) '-' num2str(floor(mytime(6)))];
 
@@ -41,12 +45,28 @@ end
 rrange = 0;
 rx_start(1:3,I) = 0;
 ry_start(1:3,I) = 0;
+% for i=1:300
+%     rx_start(1,i) = halo_x1(i)+rrange*rand();
+%     ry_start(1,i) = halo_y1(i)+rrange*rand();
+%     if (numHalos(i)>1)
+%         rx_start(2,i) = halo_x2(i)+rrange*rand();
+%         ry_start(2,i) = halo_y2(i)+rrange*rand();
+%         
+%     end
+%     if (numHalos(i)>2)
+%         rx_start(3,i) = halo_x3(i)+rrange*rand();
+%         ry_start(3,i) = halo_y3(i)+rrange*rand();
+%         
+%     end
+% end
+
+
 for i=1:300
-    rx_start(1,i) = halo_x1(i)+rrange*rand();
-    ry_start(1,i) = halo_y1(i)+rrange*rand();
+    rx_start(1,i) = bhalo_x1(i);
+    ry_start(1,i) = bhalo_y1(i);
     if (numHalos(i)>1)
-        rx_start(2,i) = halo_x2(i)+rrange*rand();
-        ry_start(2,i) = halo_y2(i)+rrange*rand();
+        rx_start(2,i) = bhalo_x2(i);
+        ry_start(2,i) = bhalo_y2(i);
         
     end
     if (numHalos(i)>2)
@@ -57,7 +77,9 @@ for i=1:300
 end
 
 
-real_run = 1:300;
+
+
+real_run = 126:126;
 parfor i =real_run
     
     
