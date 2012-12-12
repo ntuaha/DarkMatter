@@ -6,8 +6,8 @@ ansfile = '/Users/aha/Dropbox/Learning/2012_Kaggle/DarkSky/data/Training_halos.c
 [gSkyId,ghalo_x1,ghalo_y1,ghalo_x2,ghalo_y2,ghalo_x3,ghalo_y3]=textread(guessfile,'%s%n%n%n%n%n%n','delimiter', ',','headerlines',1);
 
 
-basefile = 'Users/aha/Dropbox/Learning/2012_Kaggle/DarkSky/Matlab/data/twohalo_3/1.csv';
-[bSkyId,bhalo_x1,bhalo_y1,bhalo_x2,bhalo_y2,bhalo_x3,bhalo_y3]=textread(guessfile,'%s%n%n%n%n%n%n','delimiter', ',','headerlines',1);
+basefile = '/Users/aha/Dropbox/Learning/2012_Kaggle/DarkSky/Matlab/data/twohalo_3/1.csv';
+[bSkyId,bhalo_x1,bhalo_y1,bhalo_x2,bhalo_y2,bhalo_x3,bhalo_y3]=textread(basefile,'%s%n%n%n%n%n%n','delimiter', ',','headerlines',1);
 
 I = 1:300;
 temp_norm(I) = 1e4;
@@ -79,7 +79,7 @@ end
 
 
 
-real_run = 126:126;
+real_run = 101:104;
 parfor i =real_run
     
     

@@ -18,15 +18,17 @@ temp_Y1 =0;
 temp_X2 =0;
 temp_Y2 =0;
 temp_norm = 1e4;
+temp_length = 1e5;
 for XX2 = 0:step:4200
     for YY2 = 0:step:4200
         XX2
         YY2
         beta0 = [c1,m1,c2,m2,e,x_start(1),y_start(1),XX2,YY2,c12,r1,r2,r12,E2];
         [C1 M1 C2 M2 E X1 Y1 X2 Y2 norm] = findHalo2(index,beta0,x,y,e1,e2);
-        move = getDistance(XX2,YY2,X2,Y2);
-        if(norm<temp_norm && move < step/2)
-            temp_norm = norm;
+        k= getDistance(XX2,YY2,X2,Y2);
+        if(k<temp_norm)
+            %temp_length = norm;
+            temp_norm = k;
             temp_X1 = X1;
             temp_X2 = X2;
             temp_Y1 = Y1;
