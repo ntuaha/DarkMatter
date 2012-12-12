@@ -111,7 +111,7 @@ parfor i =real_run
         plot(halo_x1(i),halo_y1(i),'rs', 'MarkerEdgeColor','k','MarkerFaceColor','r','MarkerSize',10);
         title([num2str(i) ': ' num2str(dd(i)) ]);
         hold on
-        axis([-4200 8400 -4200 8400]);
+        axis([0 4200 0 4200]);
         text(halo_x1(i),halo_y1(i),'r1');
         plot(result_x(i),result_y(i),'ro', 'MarkerEdgeColor','k','MarkerFaceColor','g','MarkerSize',10);
         text(result_x(i),result_y(i),'n1');
