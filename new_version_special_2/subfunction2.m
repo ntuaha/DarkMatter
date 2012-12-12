@@ -12,7 +12,7 @@ r12 = 1;
 E2 = 0;
 
 
-step = 200;
+step = 500;
 temp_X1 =0;
 temp_Y1 =0;
 temp_X2 =0;
