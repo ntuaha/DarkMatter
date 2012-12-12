@@ -28,8 +28,11 @@ for XX2 = 0:step:4200
         [C1 M1 C2 M2 E X1 Y1 XXX2 YYY2 norm] = findHalo2(index,beta0,x,y,e1,e2);
         %second
         beta0 = [c1,m1,c2,m2,e,x_start(1),y_start(1),XXX2,YYY2,c12,r1,r2,r12,E2];
+        [C1 M1 C2 M2 E X1 Y1 temp_XXX2 temp_YYY2 norm] = findHalo2(index,beta0,x,y,e1,e2);
+        %third
+        beta0 = [c1,m1,c2,m2,e,x_start(1),y_start(1),temp_XXX2,temp_YYY2,c12,r1,r2,r12,E2];
         [C1 M1 C2 M2 E X1 Y1 temp_XX2 temp_YY2 norm] = findHalo2(index,beta0,x,y,e1,e2);
-        move= getDistance(temp_XX2,temp_YY2,XXX2,YYY2);
+        move= getDistance(temp_XX2,temp_YY2,temp_XXX2,temp_YYY2);
         if(move<temp_norm)
             %temp_length = norm;
             temp_norm = move;
