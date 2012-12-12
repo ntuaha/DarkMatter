@@ -24,6 +24,7 @@ for XX2 = 0:step:4200
     for YY2 = 0:step:4200
         XX2
         YY2
+        index
         %first
         beta0 = [c1,m1,c2,m2,e,x_start(1),y_start(1),XX2,YY2,c12,r1,r2,r12,E2];
         [C1 M1 C2 M2 E X1 Y1 XXX2 YYY2 norm] = findHalo2(index,beta0,x,y,e1,e2);
@@ -34,8 +35,8 @@ for XX2 = 0:step:4200
 %         beta0 = [c1,m1,c2,m2,e,x_start(1),y_start(1),temp_XXX2,temp_YYY2,c12,r1,r2,r12,E2];
 %         [C1 M1 C2 M2 E X1 Y1 temp_XX2 temp_YY2 norm] = findHalo2(index,beta0,x,y,e1,e2);
         move= getDistance(final_X2,final_Y2,XXX2,YYY2);
-        move2= getDistance(final_X2,final_Y2,XX2,YY2);
-        if(move<temp_norm && move2<max_area)
+%        move2= getDistance(final_X2,final_Y2,XX2,YY2);
+        if(move<temp_norm)
             %temp_length = norm;
             temp_norm = move;
             temp_X1 = X1;

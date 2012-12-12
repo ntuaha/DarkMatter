@@ -10,13 +10,19 @@ galaxy(:,2) = yy;
 
 
 
-opt=optimset('MaxIter',3000,'MaxFunEvals',length(xx)*100,'TolFun',1e-10);
+opt=optimset('MaxIter',3000,'MaxFunEvals',length(xx)*2,'TolFun',1e-12);
 
-c1 = -1;
-c2 = 2;
+c1 = -1e4;
+c2 = 1e4;
 
-lower_beta = [1.0,0,1.0,0,1.0,0,-1,0,0,0,0,0,0,1,1,1,1,c1,c1,c1,c1,c1,c1,c1];
-upper_beta = [1e6,1e7,1e6,1e7,1e6,1e7,1,4200,4200,4200,4200,4200,4200,1e10,1e10,1e10,1e10,c2,c2,c2,c2,c2,c2,c2];
+e2_upper = 1;
+e2_lower = -1;
+
+L_min = -4200;
+L_max = 8400;
+
+lower_beta = [1.0,0,1.0,0,1.0,0,-1,L_min,L_min,L_min,L_min,L_min,L_min,1,1,1,1,c1,c1,c1,c1,c1,c1,c1,e2_upper];
+upper_beta = [1e6,1e7,1e6,1e7,1e6,1e7,1,L_max,L_max,L_max,L_max,L_max,L_max,1e10,1e10,1e10,1e10,c2,c2,c2,c2,c2,c2,c2,e2_lower];
 
 [beta,norm] = lsqcurvefit(@darkmatter3,beta0,galaxy,ee,lower_beta,upper_beta,opt);
 C1 = beta(1);

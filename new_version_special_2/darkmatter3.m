@@ -6,7 +6,7 @@ function y_result = darkmatter3(beta,location)
     M2 = beta(4);
     C3 = beta(5);
     M3 = beta(6);
-    e = beta(7);
+    e1 = beta(7);
     X1 = beta(8);
     Y1= beta(9);
     X2 = beta(10);
@@ -27,6 +27,8 @@ function y_result = darkmatter3(beta,location)
     R23 = beta(22);
     R13 = beta(23);
     R123 = beta(24);
+    
+    e2 = beta(25);
 
     
     
@@ -82,7 +84,7 @@ function y_result = darkmatter3(beta,location)
     
     l = length(phi);
     s = l / 2;
-    y_result(1:s)  = e - F1(1:s) .* cos(2*phi(1:s)) - F2(1:s) .* cos(2*phi2(1:s)) - F3(1:s) .* cos(2*phi3(1:s)) - F12(1:s) .* cos(2*phi12(1:s)) - F23(1:s) .* cos(2*phi23(1:s)) - F13(1:s) .* cos(2*phi13(1:s)) - F123(1:s) .* cos(2*phi123(1:s)) ;
-    y_result(s+1:l)  = e - F1(s+1:l) .* sin(2*phi(s+1:l)) -F2(s+1:l).* sin(2*phi2(s+1:l)) -F3(s+1:l).* sin(2*phi3(s+1:l))  - F12(1:s) .* sin(2*phi12(1:s)) - F23(1:s) .* sin(2*phi23(1:s)) - F13(1:s) .* sin(2*phi13(1:s)) - F123(1:s) .* sin(2*phi123(1:s));
+    y_result(1:s)  = e1 - F1(1:s) .* cos(2*phi(1:s)) - F2(1:s) .* cos(2*phi2(1:s)) - F3(1:s) .* cos(2*phi3(1:s)) - F12(1:s) .* cos(2*phi12(1:s)) - F23(1:s) .* cos(2*phi23(1:s)) - F13(1:s) .* cos(2*phi13(1:s)) - F123(1:s) .* cos(2*phi123(1:s)) ;
+    y_result(s+1:l)  = e2 - F1(s+1:l) .* sin(2*phi(s+1:l)) -F2(s+1:l).* sin(2*phi2(s+1:l)) -F3(s+1:l).* sin(2*phi3(s+1:l))  - F12(1:s) .* sin(2*phi12(1:s)) - F23(1:s) .* sin(2*phi23(1:s)) - F13(1:s) .* sin(2*phi13(1:s)) - F123(1:s) .* sin(2*phi123(1:s));
     
     

@@ -79,7 +79,7 @@ end
 
 
 
-real_run = 101:104;
+real_run = 101:200;
 parfor i =real_run
     
     
@@ -89,7 +89,9 @@ parfor i =real_run
     file = ['/Users/aha/Dropbox/Learning/2012_Kaggle/DarkSky/data/Train_Skies/Training_Sky' num2str(i) '.csv' ];
     [id,x,y,e1,e2]=textread(file,'%s%n%n%n%n','delimiter', ',','headerlines',1);
     if(numHalos(i)==1)
-        [C M E result_x(i) result_y(i) temp_norm(i)]=subfunction1(step,i,x,y,e1,e2,[rx_start(1,i)],[ry_start(1,i)]);
+%        [C M E result_x(i) result_y(i) temp_norm(i)]=subfunction1(step,i,x,y,e1,e2,[rx_start(1,i)],[ry_start(1,i)]);
+        reuslt_x(i) = bhalo_x1(i);
+        reuslt_y(i) = bhalo_y1(i);
         dd(i) = getDistance(result_x(i),result_y(i),halo_x1(i),halo_y1(i));
     end
     
@@ -153,7 +155,7 @@ matlabpool close;
 
 
 fp = fopen(['/Users/aha/Dropbox/Learning/2012_Kaggle/DarkSky/Matlab/new_version_special_2/data/' datafile '/1.csv'],'w+');
-fprintf(fp,'SkyId,pred_x1,pred_y1,pred_x2,pred_y2,pred_x3, pred_y3\n');
+fprintf(fp,'SkyId,halo_x1,halo_y1,halo_x2,halo_y2,halo_x3,halo_y3\n');
 for i=I
     fprintf(fp,'Sky%d,%f,%f,%f,%f,%f,%f\n',i,result_x(i),result_y(i),result_x_2(i),result_y_2(i),result_x_3(i),result_y_3(i));
 end
