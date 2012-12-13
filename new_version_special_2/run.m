@@ -70,8 +70,8 @@ for i=1:300
         
     end
     if (numHalos(i)>2)
-        rx_start(3,i) = halo_x3(i)+rrange*rand();
-        ry_start(3,i) = halo_y3(i)+rrange*rand();
+        rx_start(3,i) = bhalo_x3(i);
+        ry_start(3,i) = bhalo_y3(i);
         
     end
 end
@@ -79,7 +79,7 @@ end
 
 
 
-real_run = 101:200;
+real_run = 201:204;
 parfor i =real_run
     
     
