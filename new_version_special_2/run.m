@@ -100,9 +100,14 @@ parfor i =real_run
         dd(i) = getTotalDistance([result_x(i) result_x_2(i)],[result_y(i) result_y_2(i)],[halo_x1(i) halo_x2(i)],[halo_y1(i) halo_y2(i)]);
     end
     if(numHalos(i)==3)
+        [C1 M1 C2 M2 E result_x(i) result_y(i) result_x_2(i) result_y_2(i) temp_norm(i)]=subfunction2(step,i,x,y,e1,e2,[rx_start(1,i) rx_start(2,i)],[ry_start(1,i) ry_start(2,i)]);
+        result_x_3(i) = 2100;
+        result_y_3(i) = 2100;
+        %dd(i) = getTotalDistance([result_x(i) result_x_2(i)],[result_y(i) result_y_2(i)],[halo_x1(i) halo_x2(i)],[halo_y1(i) halo_y2(i)]);
+
         %[C1 M1 C2 M2 E result_x(i) result_y(i) result_x_2(i) result_y_2(i) temp_norm(i)]=subfunction2(step,i,x,y,e1,e2,[rx_start(1,i) rx_start(2,i)],[ry_start(1,i) ry_start(2,i)]);
         %dd(i) = getTotalDistance([result_x(i) result_x_2(i)],[result_y(i) result_y_2(i)],[halo_x1(i) halo_x2(i)],[halo_y1(i) halo_y2(i)]);
-        [C1 M1 C2 M2 C3 M3 E result_x(i) result_y(i) result_x_2(i) result_y_2(i) result_x_3(i) result_y_3(i) temp_norm(i)]=subfunction3(step,i,x,y,e1,e2,[rx_start(1,i) rx_start(2,i) rx_start(3,i)],[ry_start(1,i) ry_start(2,i) ry_start(3,i)]);
+        %[C1 M1 C2 M2 C3 M3 E result_x(i) result_y(i) result_x_2(i) result_y_2(i) result_x_3(i) result_y_3(i) temp_norm(i)]=subfunction3(step,i,x,y,e1,e2,[rx_start(1,i) rx_start(2,i) rx_start(3,i)],[ry_start(1,i) ry_start(2,i) ry_start(3,i)]);
         dd(i) = getTotalDistance([result_x(i) result_x_2(i) result_x_3(i)],[result_y(i) result_y_2(i) result_y_3(i)],[halo_x1(i) halo_x2(i) halo_x3(i)],[halo_y1(i) halo_y2(i) halo_y3(i)]);
     end
     
