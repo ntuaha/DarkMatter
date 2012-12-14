@@ -79,7 +79,7 @@ end
 
 
 
-real_run = 201:204;
+real_run = 1:300;
 parfor i =real_run
     
     
@@ -89,9 +89,8 @@ parfor i =real_run
     file = ['/Users/aha/Dropbox/Learning/2012_Kaggle/DarkSky/data/Train_Skies/Training_Sky' num2str(i) '.csv' ];
     [id,x,y,e1,e2]=textread(file,'%s%n%n%n%n','delimiter', ',','headerlines',1);
     if(numHalos(i)==1)
-%        [C M E result_x(i) result_y(i) temp_norm(i)]=subfunction1(step,i,x,y,e1,e2,[rx_start(1,i)],[ry_start(1,i)]);
-        reuslt_x(i) = bhalo_x1(i);
-        reuslt_y(i) = bhalo_y1(i);
+        result_x(i) = bhalo_x1(i);
+        result_y(i) = bhalo_y1(i);
         dd(i) = getDistance(result_x(i),result_y(i),halo_x1(i),halo_y1(i));
     end
     
@@ -99,15 +98,8 @@ parfor i =real_run
         [C1 M1 C2 M2 E result_x(i) result_y(i) result_x_2(i) result_y_2(i) temp_norm(i)]=subfunction2(step,i,x,y,e1,e2,[rx_start(1,i) rx_start(2,i)],[ry_start(1,i) ry_start(2,i)]);
         dd(i) = getTotalDistance([result_x(i) result_x_2(i)],[result_y(i) result_y_2(i)],[halo_x1(i) halo_x2(i)],[halo_y1(i) halo_y2(i)]);
     end
-    if(numHalos(i)==3)
-        [C1 M1 C2 M2 E result_x(i) result_y(i) result_x_2(i) result_y_2(i) temp_norm(i)]=subfunction2(step,i,x,y,e1,e2,[rx_start(1,i) rx_start(2,i)],[ry_start(1,i) ry_start(2,i)]);
-        result_x_3(i) = 2100;
-        result_y_3(i) = 2100;
-        %dd(i) = getTotalDistance([result_x(i) result_x_2(i)],[result_y(i) result_y_2(i)],[halo_x1(i) halo_x2(i)],[halo_y1(i) halo_y2(i)]);
-
-        %[C1 M1 C2 M2 E result_x(i) result_y(i) result_x_2(i) result_y_2(i) temp_norm(i)]=subfunction2(step,i,x,y,e1,e2,[rx_start(1,i) rx_start(2,i)],[ry_start(1,i) ry_start(2,i)]);
-        %dd(i) = getTotalDistance([result_x(i) result_x_2(i)],[result_y(i) result_y_2(i)],[halo_x1(i) halo_x2(i)],[halo_y1(i) halo_y2(i)]);
-        %[C1 M1 C2 M2 C3 M3 E result_x(i) result_y(i) result_x_2(i) result_y_2(i) result_x_3(i) result_y_3(i) temp_norm(i)]=subfunction3(step,i,x,y,e1,e2,[rx_start(1,i) rx_start(2,i) rx_start(3,i)],[ry_start(1,i) ry_start(2,i) ry_start(3,i)]);
+    if(numHalos(i)==3)                
+        [C1 M1 C2 M2 C3 M3 E result_x(i) result_y(i) result_x_2(i) result_y_2(i) result_x_3(i) result_y_3(i) temp_norm(i)]=subfunction3(step,i,x,y,e1,e2,[rx_start(1,i) rx_start(2,i) rx_start(3,i)],[ry_start(1,i) ry_start(2,i) ry_start(3,i)]);
         dd(i) = getTotalDistance([result_x(i) result_x_2(i) result_x_3(i)],[result_y(i) result_y_2(i) result_y_3(i)],[halo_x1(i) halo_x2(i) halo_x3(i)],[halo_y1(i) halo_y2(i) halo_y3(i)]);
     end
     
