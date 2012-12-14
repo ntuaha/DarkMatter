@@ -18,8 +18,8 @@ c2 = 1e4;
 e2_upper = 1;
 e2_lower = -1;
 
-L_min = -4200;
-L_max = 8400;
+L_min = 0;
+L_max = 4200;
 
 lower_beta = [1.0,0,1.0,0,1.0,0,-1,L_min,L_min,L_min,L_min,L_min,L_min,1,1,1,1,c1,c1,c1,c1,c1,c1,c1,e2_lower];
 upper_beta = [1e6,1e7,1e6,1e7,1e6,1e7,1,L_max,L_max,L_max,L_max,L_max,L_max,1e10,1e10,1e10,1e10,c2,c2,c2,c2,c2,c2,c2,e2_upper];

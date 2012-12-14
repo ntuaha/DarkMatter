@@ -13,8 +13,8 @@ c2 = 1e4;
 e2_upper = 1;
 e2_lower = -1;
 
-L_min = -4200;
-L_max = 8400;
+L_min = 0;
+L_max = 4200;
 
 opt=optimset('MaxIter',3000,'MaxFunEvals',length(xx)*2,'TolFun',1e-12);
 
